@@ -10,4 +10,21 @@ class Comment < ActiveRecord::Base
   def self.ordered_by_date
     return Comment.all.order(date: :desc)
   end
+
+
+  # Comparison
+  # ----------------------------
+  def ==(other)
+    text == other.text && date == other.date
+  end
+
+  def hash
+    [text, date].hash
+  end
+
+  # Hash Comparison
+  def eql?(other)
+    self == other
+  end
+# ----------------------------
 end

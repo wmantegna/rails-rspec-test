@@ -23,11 +23,7 @@ RSpec.describe Comment, type: :model do
     end
 
     it "has one after adding one" do
-      # Comment.create
-      comment = Comment.new
-      comment.text = "hello world"
-      comment.date = Date.today
-      comment.save
+      create(:comment, :no_text)
       expect(Comment.count).to eq 1
     end
 
@@ -46,15 +42,14 @@ RSpec.describe Comment, type: :model do
     end
 
     it "has correct ordering" do
-      comment1 = comment('hello', Date.yesterday)
-      comment2 = comment('hello', Date.today)
+      comment1 = create(:comment, :yesterday)
+      comment2 = create(:comment, :today)
       
       orderedComments = Comment.ordered_by_date
+      # orderedComments.each do |c|
+      #   puts c.to_json
+      # end
 
-      puts "comment1.id = #{comment1.id}"
-      puts "comment2.id = #{comment2.id}"
-      puts orderedComments.map(&:id)
-      
       expect(orderedComments.first).to eq(comment2)
       expect(orderedComments.second).to eq(comment1)
     end
