@@ -9,10 +9,19 @@
           "runner": ["r"],
           "console": ["c"],
           "server": ["s"],
-          "generate": ["g"]
+          "generate": ["g"],
+          "parallel_rspec": [],
+          "parallel_cucumber": []
         },
         "test_environment": {
-          "test_helper": {"test": ["rspec", "testrb"]}
+          "cucumber_environment": {
+                  "cucumber": [],
+                  "parallel_cucumber_worker": []
+	  },
+          "test_helper": {
+                  "test": ["rspec", "testrb"],
+                  "parallel_rspec_worker": []
+          }
         }
       }
     }
